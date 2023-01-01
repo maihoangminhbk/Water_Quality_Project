@@ -36,12 +36,11 @@ def main(args):
     X_train, X_test = min_max_normalization(X_train, X_test, mode="train")
 
     ### Train Model
-    model = DecisionTreeClassifier(criterion="entropy", max_depth=10, min_samples_leaf=50,
-                       min_samples_split=5, random_state=42)
-
+    model = DecisionTreeClassifier(max_depth=10, min_samples_leaf=50, min_samples_split=5,
+                       random_state=42)
     model.fit(X_train, y_train)
 
-    time_str = str(datetime.datetime.now())
+    time_str = str(datetime.datetime.now().strftime("%m_%d_%Y_%H_%M_%S"))
     save_path = os.path.join("result", "train", time_str)
     os.mkdir(save_path)
 
@@ -53,7 +52,7 @@ def main(args):
                 y_train,
                 target_name="water quality",
                 feature_names=df.columns,
-                title="Water data set classification",
+                title="Water trainset classification",
                 class_names=["0", "1"],
                 scale=1.2)
 
@@ -99,6 +98,21 @@ def main(args):
     plt.title("Classification Report")
     classification_report_filename = os.path.join(save_path, "classification_report.jpg")
     plt.savefig(classification_report_filename)
+
+    # Visualize
+    if "--visualize" in args:
+        fig = plt.figure(figsize=(25,20))
+        viz = dtreeviz(model,
+                X_test,
+                y_test,
+                target_name="water quality",
+                feature_names=df.columns,
+                title="Water testset classification",
+                class_names=["0", "1"],
+                scale=1.2)
+
+        visualization_filename = os.path.join(save_path, "visualization_tested_tree.svg")
+        viz.save(visualization_filename) 
 
 if __name__ == "__main__":
     main(sys.argv)

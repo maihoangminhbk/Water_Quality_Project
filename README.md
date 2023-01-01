@@ -10,6 +10,7 @@
     - Báo cáo kết quả (classification_report)
     - Confusion_matrix
     - Visualize trained tree
+    - Visualize tested tree
     - Visualize tree
 - src/: Chứa source code
     - train.py: File huấn luyện model
