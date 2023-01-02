@@ -1,10 +1,13 @@
 # Hướng dẫn cài đặt:
 ## Yêu cầu:
 - Cài đặt môi trường ảo Anaconda để quản lí parkage Python - [Trang chủ Anaconda](https://docs.anaconda.com/anaconda/install/index.html) (*Được đề xuất)
-- Cài đặt Graphviz để visualize cây quyết định - [Trang chủ graphviz](https://graphviz.org/download/) (*không yêu cầu)
+- Cài đặt Graphviz để visualize cây quyết định - [Trang chủ graphviz](https://graphviz.org/download/) (*Không yêu cầu)
 
 ## Cấu trúc thư mục:
-- dataset/: Chứa tập dữ liệu cần train hoặc dữ liệu test
+- dataset/: Chứa tập dữ liệu cần train hoặc dữ liệu predict
+    - Các thuộc tính: ph, Hardness, Solids, Chloramines, Sulfate, Conductivity, Organic_carbon, Trihalomethanes, Turbidity, Potability
+    - Thuộc tính Potability là nhãn đầu ra nên sẽ không xuất hiện trong file `predict`
+
 - model/: Chứa model đã train
 - result/: Chứa kết quả sau khi train, chứa các file:
     - Báo cáo kết quả (classification_report)
@@ -53,3 +56,16 @@ python src/train.py --f predict.csv
 - Visualize tree
 
 ## Model được lưu trong folder `model/`
+
+# Tài liệu tham khảo
+[1].[https://www.kaggle.com/datasets/adityakadiwal/water-potability](https://www.kaggle.com/datasets/adityakadiwal/water-potability)
+
+[2].[https://www.kaggle.com/code/mftnakrsu/water-quality-eda-random-forest-decision-tree](https://www.kaggle.com/code/mftnakrsu/water-quality-eda-random-forest-decision-tree)
+
+[3].[https://towardsdatascience.com/a-better-way-to-visualize-decision-trees-with-the-dtreeviz-library-758994cdf05e](https://towardsdatascience.com/a-better-way-to-visualize-decision-trees-with-the-dtreeviz-library-758994cdf05e)
+
+[4].[https://scikit-learn.org/stable/modules/tree.html](https://scikit-learn.org/stable/modules/tree.html)
+
+[5].[https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html)
+
+[6].[https://scikit-learn.org/stable/auto_examples/tree/plot_unveil_tree_structure.html](https://scikit-learn.org/stable/auto_examples/tree/plot_unveil_tree_structure.html)
